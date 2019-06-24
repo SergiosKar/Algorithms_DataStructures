@@ -223,11 +223,38 @@ paint_fence(2,3)
 
 
 
+# 582 Kill process
+
+# pid =  [1, 3, 10, 5]
+# ppid = [3, 0, 5, 3]
+
+#build a hashmap ( adjacency list) and do a dfs to find
+# the process and all its children
+
+def killProcess(self, pid, ppid, kill):
+        """
+        @solution: hashmap + dfs
+        @runtime:  400ms
+        @timecomplexity: O(n)
+        """
+        ret = []
+        hm = dict()
+        for i in range(len(ppid)):
+            group = hm.setdefault(ppid[i], [])
+            group.append(pid[i])
+        dfs(hm, kill, ret)
+        return ret
+    
+def dfs(self, hm, node, ret):
+    ret.append(node)
+    if node in hm:
+        for child in hm.get(node):
+            dfs(hm, child, ret)
 
 
 
-
-
+x=5
+print(x)
 
 
 
